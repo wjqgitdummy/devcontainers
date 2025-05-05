@@ -1,4 +1,4 @@
-name: Multi-Arch Build and Conditional Push Base Images
+name: Base Images
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   build_and_push:
-    if: github.event.pull_request.merged
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -62,7 +62,7 @@ jobs:
         id: build-push
         with:
           context: ./base
-          file: ./base/noble.dockerfile
+          file: noble.dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/release' }}
           tags: ${{ steps.meta.outputs.tags }}
