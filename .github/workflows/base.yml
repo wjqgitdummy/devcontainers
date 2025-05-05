@@ -36,6 +36,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Echo Custom Registry
+        run: echo "Custom Registry - ${{ env.DOCKER_REGISTRY }}"
 
       - name: Login to Secondary Registry (Custom)
         uses: docker/login-action@v3
