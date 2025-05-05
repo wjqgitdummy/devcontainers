@@ -51,7 +51,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/${{ github.actor }}
+            ghcr.io/${{ github.actor }/${{ env.IMAGE_NAME_NOBLE }}}
             ${{ vars.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME_NOBLE }}
           tags: |
             type=sha
@@ -76,6 +76,6 @@ jobs:
         if: github.ref == 'refs/heads/release'
         uses: actions/attest-build-provenance@v2
         with:
-          subject-name: ghcr.io/${{ github.actor }}
+          subject-name: ghcr.io/${{ github.actor }/${{ env.IMAGE_NAME_NOBLE }}}
           subject-digest: ${{ steps.build_push.outputs.digest }}
           push-to-registry: true
