@@ -62,7 +62,7 @@ jobs:
         id: build-push
         with:
           context: ./base
-          file: noble.dockerfile
+          file: ./base/noble.dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/release' }}
           tags: ${{ steps.meta.outputs.tags }}
