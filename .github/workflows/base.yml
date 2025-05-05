@@ -16,6 +16,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+      attestations: write
+      id-token: write # Required for OIDC token generation for attestation
 
     steps:
       - name: Checkout repository
@@ -59,7 +61,7 @@ jobs:
 
       - name: Build Noble Image
         uses: docker/build-push-action@v6
-        id: build-push
+        id: build_push
         with:
           context: ./base
           file: ./base/noble.dockerfile
@@ -75,5 +77,5 @@ jobs:
         uses: actions/attest-build-provenance@v2
         with:
           subject-name: ghcr.io/${{ github.repository }}
-          subject-digest: ${{ steps.build-push.outputs.digest }}
+          subject-digest: ${{ steps.build_push.outputs.digest }}
           push-to-registry: true
