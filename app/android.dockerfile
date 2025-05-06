@@ -46,8 +46,8 @@ RUN SDK_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-lin
 
 ## install sdk tools 
 RUN yes | sdkmanager --licenses
-RUN sdkmanager tools
-RUN sdkmanager platform-tools
+RUN echo y | ${ANDROID_CLI_ROOT}/sdkmanager "tools" && \
+    echo y | ${ANDROID_CLI_ROOT}/sdkmanager "platform-tools"
 
 RUN mkdir -p ${USERHOME}/.android && \
     touch ${USERHOME}/.android/repositories.cfg
