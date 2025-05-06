@@ -22,6 +22,12 @@ RUN sudo apt update && sudo apt install --no-install-recommends -y \
     && sudo rm -rf /var/lib/apt/lists/*
 
 # install android sdk
+## install deps
+RUN sudo apt update && sudo apt install --no-install-recommends -y \
+    wget \
+    unzip \
+    && sudo rm -rf /var/lib/apt/lists/*
+
 ## android envs
 ENV ANDROID_HOME=${USERHOME}/android-sdk
 ENV ANDROID_SDK_ROOT=${ANDROID_HOME} 
