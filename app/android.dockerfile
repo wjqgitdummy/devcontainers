@@ -32,6 +32,7 @@ RUN sudo apt update && sudo apt install --no-install-recommends -y \
 ENV ANDROID_HOME=${USERHOME}/android-sdk
 ENV ANDROID_SDK_ROOT=${ANDROID_HOME} 
 ENV ANDROID_CLI_ROOT="${ANDROID_HOME}/cmdline-tools/latest/bin"
+ENV ADB_INSTALL_TIMEOUT 120
 ENV PATH="${PATH}:${ANDROID_CLI_ROOT}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/platform-tools/bin:${ANDROID_HOME}/emulator"
 
 ## install cli tool
@@ -46,7 +47,8 @@ RUN SDK_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-lin
 
 ## install sdk tools 
 RUN yes | sdkmanager --licenses
-RUN echo y | ${ANDROID_CLI_ROOT}/sdkmanager "tools" && \
+RUN ${ANDROID_CLI_ROOT}/sdkmanager --list && \
+    echo y | ${ANDROID_CLI_ROOT}/sdkmanager "tools" && \
     echo y | ${ANDROID_CLI_ROOT}/sdkmanager "platform-tools"
 
 RUN mkdir -p ${USERHOME}/.android && \
