@@ -69,7 +69,7 @@ jobs:
           context: ./app
           file: ./app/android.dockerfile
           build-args: |
-            BASE_IMG=ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME_NOBLE }}
+            BASE_IMAGE=ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME_NOBLE }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/release' }}
           tags: ${{ steps.meta.outputs.tags }}
