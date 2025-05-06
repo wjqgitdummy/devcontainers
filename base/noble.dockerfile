@@ -11,6 +11,9 @@ RUN apt update && apt install --no-install-recommends -y \
 # disable password
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+ENV USERNAME=ubuntu
+ENV USERHOME=/home/${USERNAME}
+
 USER ubuntu
 
 # set default shell

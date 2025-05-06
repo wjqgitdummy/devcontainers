@@ -23,7 +23,7 @@ RUN sudo apt update && sudo apt install --no-install-recommends -y \
 
 # install android sdk
 ## android envs
-ENV ANDROID_HOME=${HOME}/android-sdk
+ENV ANDROID_HOME=${USERHOME}/android-sdk
 ENV ANDROID_SDK_ROOT=${ANDROID_HOME} 
 ENV ANDROID_CLI_ROOT="${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH="${PATH}:${ANDROID_CLI_ROOT}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/platform-tools/bin:${ANDROID_HOME}/emulator"
@@ -43,7 +43,7 @@ RUN yes | sdkmanager --licenses
 RUN sdkmanager tools
 RUN sdkmanager platform-tools
 
-RUN mkdir -p ${HOME}/.android && \
-    touch ${HOME}/.android/repositories.cfg
+RUN mkdir -p ${USERHOME}/.android && \
+    touch ${USERHOME}/.android/repositories.cfg
 
 ## NOTES: mount platforms and build-tools as volume 
